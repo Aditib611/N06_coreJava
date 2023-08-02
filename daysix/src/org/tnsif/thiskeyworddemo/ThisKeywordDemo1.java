@@ -1,5 +1,5 @@
-//program to demonstrate on:
-//this keyword is used to refer current instance of the class
+//program to demonstrate on this keyword is used to refer current instance of the class
+
 package org.tnsif.thiskeyworddemo;
 
 class Account{
