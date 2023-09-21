@@ -1,4 +1,4 @@
-package org.tnsif.checkedexception;
+package org.tnsif.checkedexception;//all user defined exceptions are checked exceptions(compile time exception)
 
 import java.io.FileInputStream;
 
