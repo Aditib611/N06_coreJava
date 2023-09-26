@@ -27,4 +27,4 @@ public class DemoOperations {
 	}
 
 }
-/*thread(main ,5,main)=> (Name_of_thread, priority)*/
+/*thread(main ,5,main)=> (Name_of_thread, priority, group of thread)*/
