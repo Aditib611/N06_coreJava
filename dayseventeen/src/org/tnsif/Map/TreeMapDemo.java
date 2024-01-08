@@ -1,21 +1,54 @@
 package org.tnsif.Map;
+import java.util.Comparator;
 /*sorted*/
 import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.TreeMap;
+
 
 public class TreeMapDemo {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		TreeMap<String, String> persons = new TreeMap<String, String>();	
-	    persons.put("aditi@gmail.com", "Aditi");
-	    persons.put("niti@gmail.com", "Niti");
-	    persons.put("riya@gmail.com", "Riya");
-	    persons.put("sanskruti@gmail.com", "Sanskruti ");
-	    
-	    System.out.println(persons);
-	   // persons.put(null,  "abc");//we cannot insert null key but null value are allowed 
-		  System.out.println(persons);
+		TreeMap<String, String> persons = new TreeMap<String, String>();
+
+		persons.put("aniket@gmail.com", "Gaikwad Aniket");
+		persons.put("nidhi@gmail.com", "Dhingra Nidhi");
+		persons.put("lisha@gmail.com", "Sharma Lisha");
+		persons.put("dhruvi@gmail.com", "Thakur Dhruvi");
+		System.out.println(persons);
+
+		// null keys are not allowed but null values are allowed
+		persons.put("abc@gmail.com", null);
+		//persons.put(null, "abc");
+		//persons.put(null, null);
+		//System.out.println(persons);
+
+		System.out.println(persons.containsKey("lisha@gmail.com"));
+
+		System.out.println(persons.containsValue("Lisha"));
+		System.out.println("-------------------------------");
+		System.out.println(persons.get("lisha@gmail.com"));
+
+		System.out.println("-------------------------------");
+		Set<Entry<String, String>> dict = persons.entrySet();
+		System.out.println(dict);
+		Iterator<Entry<String, String>> it = dict.iterator();
+		while (it.hasNext()) {
+			Entry<String, String> rec = it.next();
+			System.out.println(rec.getKey() + " : " + rec.getValue());
+		}
+		System.out.println("-------------------------------");
+		
+		  Comparator<Student> comp=(s1,s2)->{ return
+		  s1.getName().compareTo(s2.getName()); };
+		 	
+		TreeMap<Student, String> studMap=new TreeMap<Student,String>(comp);
+		studMap.put(new Student(101,"Nikhil",67), "Mumbai");
+		studMap.put(new Student(105,"Ketan",71), "Pune");
+		studMap.put(new Student(103,"Soham",63), "Nashik");
+		System.out.println(studMap);
 	}
 
 }

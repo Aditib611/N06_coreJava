@@ -1,8 +1,6 @@
 package org.tnsif.generics;
 import java.util.Arrays;
-
 import java.util.List;
-
 import org.tnsif.dayseventeen.Employee;
 import org.tnsif.dayseventeen.Student;
 
