@@ -40,8 +40,9 @@ public class EmployeeService {
 	                if (existingEmployeeOptional.isPresent()) {
 	                    Employee existingEmployee = existingEmployeeOptional.get();
 
-	                    // Log the shop information before update
-	                    System.out.println("Shop before update: " + existingEmployee.getShop());
+	                    // Log the updatedEmployee and the associated shop before update
+	                    System.out.println("Updated Employee: " + updatedEmployee);
+	                    System.out.println("Associated Shop: " + updatedEmployee.getShop());
 
 	                    // Update fields based on the provided employee
 	                    existingEmployee.setName(updatedEmployee.getName());
@@ -51,8 +52,8 @@ public class EmployeeService {
 	                    Shop updatedShop = updatedEmployee.getShop();
 	                    existingEmployee.setShop(updatedShop);
 
-	                    // Log the shop information after update
-	                    System.out.println("Shop after update: " + existingEmployee.getShop());
+	                    // Log the updated employee after update
+	                    System.out.println("Updated Employee after update: " + existingEmployee);
 
 	                    // Save the updated employee to the repository
 	                    return employeeRepository.save(existingEmployee);
@@ -63,7 +64,6 @@ public class EmployeeService {
 	                throw new RuntimeException("Error updating employee: " + e.getMessage());
 	            }
 	        }
-
 
 	    // Search for an employee by ID
 	    public Employee searchEmployee(Integer id) {
