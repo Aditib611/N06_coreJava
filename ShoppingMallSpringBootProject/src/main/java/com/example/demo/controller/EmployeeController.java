@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Employee;
 import com.example.demo.service.EmployeeService;
-
-
-
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
