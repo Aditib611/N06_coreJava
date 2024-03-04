@@ -30,6 +30,9 @@ public class ProductController {
     public ResponseEntity<Product> addProduct(@RequestParam(value = "name") String name,
                                               @RequestParam(value = "manufacturing") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate manufacturing,
                                               @RequestParam(value = "price") float price,
+                                              @RequestParam(value = "description") String description,
+                                              @RequestParam(value = "discount") int discount,
+                                              
                                               @RequestParam(value = "category") String category,
                                               @RequestParam(value = "image", required = false) MultipartFile image)
             throws IOException {
@@ -39,6 +42,8 @@ public class ProductController {
         newProduct.setManufacturing(manufacturing);
         newProduct.setPrice(price);
         newProduct.setCategory(category);
+        newProduct.setDescription(description);
+        newProduct.setDiscount(discount);
 
         Product addedProduct = productService.addProduct(newProduct, image);
         return ResponseEntity.ok(addedProduct);

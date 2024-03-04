@@ -69,11 +69,17 @@ public class ProductService {
 	        if (updatedProduct.getManufacturing() != null) {
 	            existingProduct.setManufacturing(updatedProduct.getManufacturing());
 	        }
+	        if (updatedProduct.getDescription() != null) {
+	            existingProduct.setDescription(updatedProduct.getDescription());
+	        }
 
 	        if (updatedProduct.getPrice() != 0.0) {
 	            existingProduct.setPrice(updatedProduct.getPrice());
 	        }
 
+	        if (updatedProduct.getDiscount() != 0.0) {
+	            existingProduct.setDiscount(updatedProduct.getDiscount());
+	        }
 	        if (updatedProduct.getCategory() != null) {
 	            existingProduct.setCategory(updatedProduct.getCategory());
 	        }

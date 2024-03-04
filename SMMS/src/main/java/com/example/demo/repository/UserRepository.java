@@ -1,17 +1,17 @@
 package com.example.demo.repository;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-	User findByNameAndPassword(String name, String password);
 
-	boolean existsByName(String name);
+	boolean existsByUsername(String username);
+
+	User findByUsernameAndPassword(String username, String password);
+
+	User findByUsername(String username);
 
 	}
 

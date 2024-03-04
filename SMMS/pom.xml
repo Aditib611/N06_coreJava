@@ -65,6 +65,11 @@
     <artifactId>jjwt-jackson</artifactId>
     <version>0.11.2</version> <!-- Use the same version as jjwt-api -->
 </dependency>
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>SampleSpringBootProject</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

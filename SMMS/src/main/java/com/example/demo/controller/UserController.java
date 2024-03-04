@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import java.util.Collections;
-import java.util.List;
 
+
+import java.util.List;
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.entity.User;
-//import com.example.demo.service.UserNotFoundException;
+
 import com.example.demo.service.UserService;
+
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 @RestController
 @RequestMapping("/users")
@@ -51,26 +52,33 @@ public class UserController {
 	    public ResponseEntity<?> loginUser(@RequestBody User user) {
 	        try {
 	            // Validate credentials and generate a token if successful
-	            String token = userService.loginUser(user.getName(), user.getPassword());
-	            return ResponseEntity.ok(Collections.singletonMap("token", token));
+	            String token = userService.loginUser(user.getUsername(), user.getPassword());
+	            //return ResponseEntity.ok(Collections.singletonMap("token", token));
+	            return ResponseEntity.ok(token); // Return the generated token directly
 	        } catch (AuthenticationException e) {
 	            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
 	        }
 	    }
 	    
 	    
+	    @PatchMapping("/update/{userId}")
+	    public ResponseEntity<User> updateUser(@PathVariable int userId, @RequestBody User updatedUserData) {
+	        User updatedUser = userService.updateUser(userId, updatedUserData);
 
+	        if (updatedUser != null) {
+	            return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+	        } else {
+	            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	        }
+	    }
+	        
 	    @PostMapping("/add")
 	    public ResponseEntity<User> addUser(@RequestBody User user) {
 	        User addedUser = userService.addUser(user);
 	        return new ResponseEntity<>(addedUser, HttpStatus.CREATED);
 	    }
 
-	    @PutMapping("/update")
-	    public ResponseEntity<User> updateUser(@RequestBody User user) {
-	        User updatedUser = userService.updateUser(user);
-	        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-	    }
+	   
 
 	    @GetMapping("/{userId}")
 	    public ResponseEntity<User> getUserById(@PathVariable int userId) {
@@ -93,6 +101,7 @@ public class UserController {
 	        userService.deleteUser(userId);
 	        return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
 	    }
+	    
 	    @PostMapping("/logout")
 	    public ResponseEntity<String> logoutUser(@RequestHeader("Authorization") String token) {
 	        try {
